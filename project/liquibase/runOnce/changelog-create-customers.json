@@ -1,0 +1,18 @@
+{
+    "databaseChangeLog": [{
+      "preConditions": [{
+        "runningAs": {
+          "username": "OHOL_CICD"
+        }
+      }]
+    }, {
+      "changeSet": {
+        "id": "<<ID>>",
+        "author": "<<Your Name>>",
+        "comment": "<<What are you doing in this change?>>",
+        "changes": [{<<Database Changes>>
+            }]
+      }
+    }]
+  }
+  

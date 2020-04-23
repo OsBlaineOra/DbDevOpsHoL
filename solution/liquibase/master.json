@@ -1,0 +1,14 @@
+{
+    "databaseChangeLog": [{
+        "include": {
+          "file": "runOnce/changelog-create-customers.json"
+        }
+      },
+      {
+        "include": {
+          "file": "runOnce/changelog-create-orders.json"
+        }
+      }
+    ]
+  }
+  

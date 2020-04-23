@@ -1,0 +1,36 @@
+sudo su
+yum update -y
+
+# java
+yum install -y --enablerepo=ol7_ociyum_config oci-included-release-el7
+yum install -y jdk1.8
+java --version
+
+# sqlcl
+yum install -y sqlcl
+alias sql="/opt/oracle/sqlcl/bin/sql"
+sql -v
+
+# Liquibase
+wget https://github.com/liquibase/liquibase/releases/download/v3.8.8/liquibase-3.8.8.tar.gz
+mkdir /opt/liquibase
+tar xvzf liquibase-3.8.8.tar.gz -C /opt/liquibase/
+echo 'export PATH=$PATH:/opt/liquibase' >> ~/.bashrc
+source ~/.bashrc
+liquibase --version
+
+# Install Jenkins
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+yum install -y jenkins
+
+systemctl start jenkins
+systemctl status jenkins
+systemctl enable jenkins
+
+firewall-cmd --permanent --zone=public --add-port=8080/tcp
+firewall-cmd --reload
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+jenkins login admin/T3ster
